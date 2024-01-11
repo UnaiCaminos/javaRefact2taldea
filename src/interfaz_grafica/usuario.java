@@ -43,11 +43,11 @@ public class usuario extends JFrame {
 	ResultSet rs;
 	private JTable table;
 	
-	Inicio ini = new Inicio();
-	String ip = ini.ip;
-	String BBDD = ini.BBDD;
-	String usuario=ini.usuario;
-	String contraseña=ini.contraseña;
+	Inicio inicio = new Inicio();
+	String ip = inicio.ip;
+	String BBDD = inicio.BBDD;
+	String usuario=inicio.usuario;
+	String contraseña=inicio.contraseña;
 	
 	public void actualizartabla(String opciontabla) {
 		try
