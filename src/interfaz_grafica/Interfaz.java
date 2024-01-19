@@ -1,6 +1,9 @@
 package interfaz_grafica;
 
 import javax.swing.table.TableRowSorter;
+
+import static interfaz_grafica.Inicio.url;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JOptionPane;
@@ -64,10 +67,10 @@ public class Interfaz extends JFrame {
 	ResultSet rs;
 	
 	Inicio ini = new Inicio();
-	String ip = ini.ip;
+	String url = ini.url;
 	String BBDD = ini.BBDD;
-	String usuario=ini.usuario;
-	String contrasena=ini.contraseña;
+	String usuario=ini.user;
+	String contraseña=ini.contraseña;
 	private JTextField select_columna;
 	private JTextField between_text;
 	private JButton btnBetween;
@@ -108,7 +111,7 @@ public class Interfaz extends JFrame {
 		}
 		// Establecemos la conexiÃ³n con la base de datos.
 		try {
-			Connection conexion = DriverManager.getConnection (ip,usuario,contrasena);
+			Connection conexion = DriverManager.getConnection (url,usuario,contraseña);
 			//Preparamos la consulta
 			DefaultTableModel model = new DefaultTableModel();
 			st = conexion.createStatement();
@@ -163,7 +166,7 @@ public class Interfaz extends JFrame {
 			String[] partes = sartu.split(";");
 			 Connection conexion;
 			 try {
-				conexion = DriverManager.getConnection (ip,usuario,contrasena);
+				conexion = DriverManager.getConnection (url,usuario,contraseña);
 				Statement st = conexion.createStatement();
 				ResultSet rs = st.executeQuery("select "+partes[0]+" from "+opciontabla);
 				ResultSetMetaData rsmd = rs.getMetaData();
@@ -190,7 +193,7 @@ public class Interfaz extends JFrame {
 		String[] partes = sartu.split(";");
 		 Connection conexion;
 		 try {
-			conexion = DriverManager.getConnection (ip,usuario,contrasena);
+			conexion = DriverManager.getConnection (url,usuario,contraseña);
 			Statement st = conexion.createStatement();
 			ResultSet rs = st.executeQuery("select "+partes[0]+" from "+opciontabla);
 			ResultSetMetaData rsmd = rs.getMetaData();
@@ -218,7 +221,7 @@ public class Interfaz extends JFrame {
 		 Connection conexion;
 		 ResultSet rs;
 		 try {
-			conexion = DriverManager.getConnection (ip,usuario,contrasena);
+			conexion = DriverManager.getConnection (url,usuario,contraseña);
 			Statement st = conexion.createStatement();
 			if(isNumeric(partes[1])) {
 				rs = st.executeQuery("select * from " + opciontabla + " WHERE " + partes[0] + " =" + Integer.parseInt(partes[1])+";");
@@ -237,7 +240,7 @@ public class Interfaz extends JFrame {
 		 Connection conexion;
 		 ResultSet rs;
 		 try {
-			conexion = DriverManager.getConnection (ip,usuario,contrasena);
+			conexion = DriverManager.getConnection (url,usuario,contraseña);
 			Statement st = conexion.createStatement();
 			if(isNumeric(partes[1])&&isNumeric(partes[2])) {
 				rs = st.executeQuery("select * from " + opciontabla + " WHERE " + partes[0] + " between " + Integer.parseInt(partes[1])+" AND "+Integer.parseInt(partes[2])+";");
@@ -255,7 +258,7 @@ public class Interfaz extends JFrame {
 		 Connection conexion;
 		 ResultSet rs;
 		 try {
-			conexion = DriverManager.getConnection (ip,usuario,contrasena);
+			conexion = DriverManager.getConnection (url,usuario,contraseña);
 			Statement st = conexion.createStatement();
 			if(isNumeric(partes[2])) {
 				rs = st.executeQuery("select * from " + opciontabla + " WHERE " + partes[0] +" "+ partes[1] +" "+ Integer.parseInt(partes[2])+";");
@@ -328,7 +331,7 @@ public class Interfaz extends JFrame {
 				switch(opciontabla) {
 					case "langileak":
 						try {
-							conexion = DriverManager.getConnection (ip,usuario,contrasena);
+							conexion = DriverManager.getConnection (url,usuario,contraseña);
 							st = conexion.createStatement();
 							PreparedStatement stmt = conexion.prepareStatement("INSERT INTO langileak (izena,abizena1,abizena2,nan,banku_zenbakia,langilearen_funtzioa,korreoa,helbidea,sexua,admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 							stmt.setString(1, partes[0]);
@@ -348,7 +351,7 @@ public class Interfaz extends JFrame {
 					break;
 					case "komponenteak":
 						try {
-							conexion = DriverManager.getConnection (ip,usuario,contrasena);
+							conexion = DriverManager.getConnection (url,usuario,contraseña);
 							st = conexion.createStatement();
 							PreparedStatement stmt = conexion.prepareStatement("INSERT INTO komponenteak (id,konponenteMota,img,modelo,descripzioa,kantitatea,berria,prezioa,marka,balorazioa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 							stmt.setInt(1, Integer.parseInt(partes[0]));
@@ -368,7 +371,7 @@ public class Interfaz extends JFrame {
 					break;
 					case "hornitzaileak":
 						try {
-							conexion = DriverManager.getConnection (ip,usuario,contrasena);
+							conexion = DriverManager.getConnection (url,usuario,contraseña);
 							st = conexion.createStatement();
 							PreparedStatement stmt = conexion.prepareStatement("INSERT INTO hornitzaileak (id,EmpresarekoTlfZenbakia,EmpresarenIzena,EmpresarenKorreoa,Helbidea,NAN) VALUES (?, ?, ?, ?, ?, ?)");
 							stmt.setInt(1, Integer.parseInt(partes[0]));
@@ -384,7 +387,7 @@ public class Interfaz extends JFrame {
 					break;
 					case "bezeroak":
 						try {
-							conexion = DriverManager.getConnection (ip,usuario,contrasena);
+							conexion = DriverManager.getConnection (url,usuario,contraseña);
 							st = conexion.createStatement();
 							PreparedStatement stmt = conexion.prepareStatement("INSERT INTO bezeroak (izena,abizena1,abizena2,nan,banku_zenbakia,helbidea,sexua) VALUES (?, ?, ?, ?, ?, ?, ?)");
 							stmt.setString(1, partes[0]);
@@ -401,7 +404,7 @@ public class Interfaz extends JFrame {
 					break;
 					case "berriak":
 						try {
-							conexion = DriverManager.getConnection (ip,usuario,contrasena);
+							conexion = DriverManager.getConnection (url,usuario,contraseña);
 							st = conexion.createStatement();
 							PreparedStatement stmt = conexion.prepareStatement("INSERT INTO berriak (id, izenburua, descripcioLaburra, fecha) VALUES (?, ?, ?, ?)");
 							stmt.setInt(1, Integer.parseInt(partes[0]));
@@ -418,6 +421,7 @@ public class Interfaz extends JFrame {
 				actualizartabla(opciontabla);
 			}
 		});
+		
 		btnNewButton_1.setBounds(149, 432, 89, 23);
 		contentPane.add(btnNewButton_1);
 		

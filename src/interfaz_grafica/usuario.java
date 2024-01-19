@@ -43,11 +43,11 @@ public class usuario extends JFrame {
 	ResultSet rs;
 	private JTable table;
 	
-	Inicio inicio = new Inicio();
-	String ip = inicio.ip;
-	String BBDD = inicio.BBDD;
-	String usuario=inicio.usuario;
-	String contraseña=inicio.contraseña;
+	Inicio ini = new Inicio();
+	String ip = ini.ip;
+	String BBDD = ini.BBDD;
+	String usuario=ini.user;
+	String contraseña=ini.contraseña;
 	
 	public void actualizartabla(String opciontabla) {
 		try
@@ -88,7 +88,7 @@ public class usuario extends JFrame {
 	public usuario() {
 		
 		setResizable(false);
-		setTitle("Base de datos de usuario");
+		setTitle("Base de datos de user");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 480);
 		contentPane = new JPanel();
