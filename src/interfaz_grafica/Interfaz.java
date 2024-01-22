@@ -70,7 +70,7 @@ public class Interfaz extends JFrame {
 	String url = ini.url;
 	String BBDD = ini.BBDD;
 	String usuario=ini.user;
-	String contraseña=ini.contraseña;
+    String contraseña=ini.contraseña;
 	private JTextField select_columna;
 	private JTextField between_text;
 	private JButton btnBetween;

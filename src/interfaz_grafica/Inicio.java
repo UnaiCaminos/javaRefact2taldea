@@ -88,7 +88,7 @@ public class Inicio extends JFrame {
 						while(rs.next()) {
 							if(pwd.equals(rs.getString(1))) {
 								System.out.println("ONDO DA!");
-								nterfaz frame = new Interfaz(user);
+								Interfaz frame = new Interfaz();
 								frame.setVisible(true);
 							}else System.out.println("PASAHITZ OKERRA");
 						}
