@@ -1,4 +1,4 @@
-package interfaz_grafica;
+package erronka;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ public class konexioa {
 	private static String BBDD="com.mysql.cj.jdbc.Driver";
 	private static String usuario="root";
 	private static String contraseña="1WMG2023";
-	private static String url="jdbc:mysql://localhost:3306/pruebabd";
+	public static String url="jdbc:mysql://localhost:3306/erronka";
 	
 	static {
 		try {

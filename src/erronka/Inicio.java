@@ -1,6 +1,7 @@
-package interfaz_grafica;
+package erronka;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,6 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import erronka.erronka0;
+
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -88,7 +91,7 @@ public class Inicio extends JFrame {
 						while(rs.next()) {
 							if(pwd.equals(rs.getString(1))) {
 								System.out.println("ONDO DA!");
-								Interfaz frame = new Interfaz();
+								Panela frame = new Panela(user);
 								frame.setVisible(true);
 							}else System.out.println("PASAHITZ OKERRA");
 						}
@@ -97,7 +100,27 @@ public class Inicio extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					 
+					 String kontsulta2 ="SELECT DISTINCT * FROM langileak WHERE Izena='Miguel'";
+				        konexioa kon2=new konexioa();
+						Connection conexion2 = kon2.getConnection();
+						Statement st2;
+						ResultSet rs2;
+						try {
+							st2=conexion2.createStatement();
+							rs2=st2.executeQuery(kontsulta2);
+							while(rs2.next()) {
+								if(pwd.equals(rs2.getString(1))) {
+									System.out.println("ONDO DA!");
+									erronka0 frame = new erronka0();
+									frame.setVisible(true);
+								}else System.out.println("PASAHITZ OKERRA");
+							}
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}	
+					
 			}
 		});
 	}
