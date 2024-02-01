@@ -100,7 +100,7 @@ public class Inicio extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					 String kontsulta2 ="SELECT DISTINCT * FROM langileak WHERE Izena='Miguel'";
+					 String kontsulta2 ="SELECT DISTINCT * FROM langileak WHERE admin=1";
 				        konexioa kon2=new konexioa();
 						Connection conexion2 = kon2.getConnection();
 						Statement st2;

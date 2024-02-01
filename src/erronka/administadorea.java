@@ -23,21 +23,21 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class erronka0 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textDNI;
-	private JTextField textTel;
-	private JTextField textWeb_kodea;
-	private JTextField textKontua;
-	private JTextField textKorreoa;
-	private JTextField textDepartamentua;
-	private JTextField txtLanpostua;
-	private JTextField txtIzena;
-	private JTextField txtAbizena;
+	private JTextField txtIzena1;
+	private JTextField txtAbz1;
+	private JTextField txtAbz2;
+	private JTextField txtNan;
+	private JTextField txtBankuZenb;
+	private JTextField txtLana;
+	private JTextField txtKorreoa;
 	private JTextField txtName;
 	private JTextField textAbizena2;
 	private JTextField txtModifikatu1;
@@ -350,20 +350,17 @@ public class erronka0 extends JFrame {
 				try {
 				    konexioa kon=new konexioa();
 				    Connection conexion = kon.getConnection();
-				    String DNI,tel,web,kontua,korreo,departamentua,lan,izena,abizena;
-				    DNI=textDNI.getText();
-				    tel=textTel.getText();
-				    web=textWeb_kodea.getText();
-				    kontua=textKontua.getText();
-				    korreo=textKorreoa.getText();
-				    departamentua=textDepartamentua.getText();
-				    lan=txtLanpostua.getText();
-				    izena=txtIzena.getText();
-				    abizena=txtAbizena.getText();
+				    String izena,abz1,abz2,Nan,BankuZenb,funtzioa,korreoa;
+				    izena=txtIzena1.getText();
+				    abz1=txtAbz1.getText();
+				    abz2=txtAbz2.getText();
+				    Nan=txtNan.getText();
+				    BankuZenb=txtBankuZenb.getText();
+				    funtzioa=txtLana.getText();
+				    korreoa=txtKorreoa.getText();
 				    String query ="INSERT INTO db1.langileak"
-						+ " Values('"+DNI+"', '"+tel+"', '"+web+"', '"+kontua+"', '"+korreo+"', '"+departamentua+"', '"+lan+"', '"+izena+"', '"+abizena+"')";
+						+ " Values('"+izena+"', '"+abz1+"', '"+abz2+"', '"+Nan+"', '"+BankuZenb+"', '"+funtzioa+"', '"+korreoa+"')";
 				    Statement stmt;
-				
 					stmt = conexion.createStatement();
 					stmt .executeUpdate(query);
 					System.out.println("Langile bat gehitu duzu");
@@ -385,7 +382,7 @@ public class erronka0 extends JFrame {
 				    String langilea, abizena;
 				    langilea=txtName.getText();
 				    abizena=textAbizena2.getText();
-				    String query ="DELETE FROM db1.langileak WHERE Izena= '"+langilea+"'&& Abizena= '"+abizena+"'";
+				    String query ="DELETE FROM db1.langileak WHERE izena= '"+langilea+"'&& abizena1= '"+abizena+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);
@@ -396,7 +393,7 @@ public class erronka0 extends JFrame {
 				}
 			}
 		});
-		btnKendu.setBounds(4, 258, 158, 23);
+		btnKendu.setBounds(4, 240, 158, 23);
 		contentPane.add(btnKendu);
 		
 		JButton btnAktualizatu = new JButton("Taula aktualizatu");
@@ -412,7 +409,7 @@ public class erronka0 extends JFrame {
 				    mod2=txtModifikatu2.getText();
 				    mod3=txtModifikatu3.getText();
 				    mod4=txtModifikatu4.getText();
-				    String query ="UPDATE langileak SET "+mod1+" ='"+mod2+"', "+mod3+" ='"+mod4+"' WHERE Izena= '"+izn+"'&& Abizena='"+abz+"'";
+				    String query ="UPDATE langileak SET "+mod1+" ='"+mod2+"', "+mod3+" ='"+mod4+"' WHERE izena= '"+izn+"'&& abizena1='"+abz+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st .executeUpdate(query);
@@ -426,11 +423,11 @@ public class erronka0 extends JFrame {
 		btnAktualizatu.setBounds(4, 328, 158, 23);
 		contentPane.add(btnAktualizatu);
 		
-		textDNI = new JTextField();
-		textDNI.setBounds(4, 69, 132, 20);
-		textDNI.setText("DNI");
-		contentPane.add(textDNI);
-		textDNI.setColumns(10);
+		txtIzena1 = new JTextField();
+		txtIzena1.setBounds(4, 69, 132, 20);
+		txtIzena1.setText("Izena");
+		contentPane.add(txtIzena1);
+		txtIzena1.setColumns(10);
 		
 		txtName = new JTextField();
 		txtName.setText("Izena");
@@ -481,52 +478,41 @@ public class erronka0 extends JFrame {
 		contentPane.add(textAbizena1);
 		textAbizena1.setColumns(10);
 		
-		textWeb_kodea = new JTextField();
-		textWeb_kodea.setBounds(4, 110, 132, 20);
-		textWeb_kodea.setText("Web_kodea");
-		contentPane.add(textWeb_kodea);
-		textWeb_kodea.setColumns(10);
+		txtAbz2 = new JTextField();
+		txtAbz2.setBounds(4, 110, 132, 20);
+		txtAbz2.setText("Bigarren abizena");
+		contentPane.add(txtAbz2);
+		txtAbz2.setColumns(10);
 		
-		textKontua = new JTextField();
-		textKontua.setBounds(4, 132, 132, 20);
-		textKontua.setText("Kontu korrontea");
-		contentPane.add(textKontua);
-		textKontua.setColumns(10);
+		txtNan = new JTextField();
+		txtNan.setBounds(4, 132, 132, 20);
+		txtNan.setText("NAN");
+		contentPane.add(txtNan);
+		txtNan.setColumns(10);
 		
-		textKorreoa = new JTextField();
-		textKorreoa.setBounds(4, 151, 132, 20);
-		textKorreoa.setText("Korreo elektronikoa");
-		contentPane.add(textKorreoa);
-		textKorreoa.setColumns(10);
+		txtBankuZenb = new JTextField();
+		txtBankuZenb.setBounds(4, 151, 132, 20);
+		txtBankuZenb.setText("Banku zenbakia");
+		contentPane.add(txtBankuZenb);
+		txtBankuZenb.setColumns(10);
 		
-		textDepartamentua = new JTextField();
-		textDepartamentua.setBounds(4, 174, 132, 20);
-		textDepartamentua.setText("Departamentua");
-		contentPane.add(textDepartamentua);
-		textDepartamentua.setColumns(10);
+		txtLana = new JTextField();
+		txtLana.setBounds(4, 174, 132, 20);
+		txtLana.setText("Lan-postua");
+		contentPane.add(txtLana);
+		txtLana.setColumns(10);
 		
-		txtLanpostua = new JTextField();
-		txtLanpostua.setBounds(4, 196, 132, 20);
-		txtLanpostua.setText("Lan-postua");
-		contentPane.add(txtLanpostua);
-		txtLanpostua.setColumns(10);
+		txtKorreoa = new JTextField();
+		txtKorreoa.setBounds(4, 196, 132, 20);
+		txtKorreoa.setText("Korreoa");
+		contentPane.add(txtKorreoa);
+		txtKorreoa.setColumns(10);
 		
-		txtIzena = new JTextField();
-		txtIzena.setBounds(4, 218, 132, 20);
-		txtIzena.setText("Izena");
-		contentPane.add(txtIzena);
-		txtIzena.setColumns(10);
-		
-		txtAbizena = new JTextField();
-		txtAbizena.setBounds(4, 238, 132, 20);
-		txtAbizena.setText("Abizena");
-		contentPane.add(txtAbizena);
-		txtAbizena.setColumns(10);
-		
-		textTel = new JTextField();
-		textTel.setBounds(4, 89, 132, 20);
-		textTel.setText("Telefono zenbakia");
-		contentPane.add(textTel);
-		textTel.setColumns(10);
+		txtAbz1 = new JTextField();
+		txtAbz1.setBounds(4, 89, 132, 20);
+		txtAbz1.setText("Lehen abizena");
+		contentPane.add(txtAbz1);
+		txtAbz1.setColumns(10);
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnKendu, btnHornitzailea, table, btnLangileak, btnBezeroak, btnNewButton, btnNewButton_1, btnbiltegia, btnGehitu, btnAktualizatu, txtIzena1, txtName, textAbizena2, txtModifikatu1, txtModifikatu2, txtModifikatu3, txtModifikatu4, textIzena1, textAbizena1, txtAbz2, txtNan, txtBankuZenb, txtLana, txtKorreoa, txtAbz1}));
 	}
 }
