@@ -26,7 +26,7 @@ public class Panela extends JFrame {
 		JButton btnBezeroa = new JButton("Bezeroa");
 		btnBezeroa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user.equals("Jon")||user.equals("Eneko")||user.equals("Maitane")||user.equals("Ander")||user.equals("Mikel")){
+				if(user.equals("Roberto")||user.equals("Celia")||user.equals("Beñat")||user.equals("Martín")||user.equals("Isabel")||user.equals("Carlos")){
 							System.out.println("ONDO DA!");
 							bezeroak frame = new bezeroak();
 							frame.setVisible(true);
@@ -39,7 +39,7 @@ public class Panela extends JFrame {
 		JButton btnHornitzailea = new JButton("Hornitzailea");
 		btnHornitzailea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        if(user.equals("Gorka")||user.equals("Ander")||user.equals("Mikel")) {
+		        if(user.equals("Celia")||user.equals("Beñat")||user.equals("Raúl")) {
 					Hornitzaileak frame = new Hornitzaileak();
 					frame.setVisible(true);
 					}else System.out.println("Baimena ukatua");
@@ -51,9 +51,9 @@ public class Panela extends JFrame {
 		JButton btnBiltegia = new JButton("Biltegia");
 		btnBiltegia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user.equals("Mikel")||user.equals("Ander")||user.equals("Naroa")||user.equals("Iker")||user.equals("Julen")||user.equals("Aitor")||user.equals("Ane")||user.equals("Unai")||user.equals("Karla")||user.equals("Markel")||user.equals("Maialen")||user.equals("Igor")||user.equals("Eneko")||user.equals("Maitane")) {
+				if(user.equals("Laura")||user.equals("Beñat")||user.equals("Martín")||user.equals("Miguel")||user.equals("Javier")||user.equals("Sara")||user.equals("Sergio")||user.equals("Daniel")||user.equals("Juan")) {
 							System.out.println("ONDO DA!");
-							biltegia frame = new biltegia();
+							konponenteak frame = new konponenteak();
 							frame.setVisible(true);
 						}else System.out.println("Baimena ukatua");
 			}
@@ -65,7 +65,7 @@ public class Panela extends JFrame {
 		JButton btnBerriak = new JButton("Berriak");
 		btnBerriak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user.equals("Mikel")||user.equals("Ander")||user.equals("Naroa")||user.equals("Iker")||user.equals("Julen")||user.equals("Aitor")||user.equals("Ane")||user.equals("Unai")||user.equals("Karla")||user.equals("Markel")||user.equals("Maialen")||user.equals("Igor")||user.equals("Eneko")||user.equals("Maitane")) {
+				if(user.equals("Martín")||user.equals("Miguel")||user.equals("Juan")||user.equals("Daniel")) {
 					System.out.println("ONDO DA!");
 					berriak frame = new berriak();
 					frame.setVisible(true);

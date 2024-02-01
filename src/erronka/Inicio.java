@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import erronka.erronka0;
+import erronka.administadorea;
 
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -80,7 +80,7 @@ public class Inicio extends JFrame {
 			        String user,pwd;
 			        user=textUser.getText();
 			        pwd= textPwd.getText();
-			        String kontsulta ="SELECT DISTINCT * FROM langileak WHERE Izena='"+user+"'";
+			        String kontsulta ="SELECT DISTINCT * FROM langileak WHERE izena='"+user+"' && admin= 0 && nan='"+pwd+"'";
 			        konexioa kon=new konexioa();
 					Connection conexion = kon.getConnection();
 					Statement st;
@@ -89,7 +89,7 @@ public class Inicio extends JFrame {
 						st=conexion.createStatement();
 						rs=st.executeQuery(kontsulta);
 						while(rs.next()) {
-							if(pwd.equals(rs.getString(1))) {
+							if(pwd.equals(rs.getString(4))) {
 								System.out.println("ONDO DA!");
 								Panela frame = new Panela(user);
 								frame.setVisible(true);
@@ -100,7 +100,7 @@ public class Inicio extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					 String kontsulta2 ="SELECT DISTINCT * FROM langileak WHERE admin=1";
+					 String kontsulta2 ="SELECT DISTINCT * FROM langileak WHERE izena='"+user+"' && admin=1 && nan='"+pwd+"'";
 				        konexioa kon2=new konexioa();
 						Connection conexion2 = kon2.getConnection();
 						Statement st2;
@@ -109,9 +109,9 @@ public class Inicio extends JFrame {
 							st2=conexion2.createStatement();
 							rs2=st2.executeQuery(kontsulta2);
 							while(rs2.next()) {
-								if(pwd.equals(rs2.getString(1))) {
+								if(pwd.equals(rs2.getString(4))) {
 									System.out.println("ONDO DA!");
-									erronka0 frame = new erronka0();
+									administadorea frame = new administadorea();
 									frame.setVisible(true);
 								}else System.out.println("PASAHITZ OKERRA");
 							}

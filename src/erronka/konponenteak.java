@@ -5,6 +5,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 
-public class biltegia extends JFrame {
+public class konponenteak extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -49,8 +50,9 @@ public class biltegia extends JFrame {
 	private JTextField txtAbizena;
 	private JTextField txtMarka;
 	private JTextField txtBalorazioa;
+	private JTextField txtId_1;
 
-	public biltegia() {
+	public konponenteak() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 749, 642);
 		contentPane = new JPanel();
@@ -134,7 +136,7 @@ public class biltegia extends JFrame {
 				    marka=txtMarka.getText();
 				    balorazioa=txtBalorazioa.getText();
 				    String query ="INSERT INTO erronka.konponenteak"
-						+ " Values('"+id+"', '"+mota+"', '"+img+"', '"+modeloa+"', '"+deskribapena+"', '"+kantitatea+"', '"+berria+"', '"+prezioa+"','"+marka+"','"+balorazioa+"')";
+						+ " Values("+id+", '"+mota+"', '"+img+"', '"+modeloa+"', '"+deskribapena+"', "+kantitatea+", '"+berria+"', "+prezioa+",'"+marka+"','"+balorazioa+"')";
 				    Statement stmt;
 				
 					stmt = conexion.createStatement();
@@ -156,7 +158,7 @@ public class biltegia extends JFrame {
 				Connection conexion = kon.getConnection();
 				String Id;
 				Id=textId2.getText();
-				String sql = "SELECT * FROM biltegia WHERE Id='"+Id+"'";
+				String sql = "SELECT * FROM konponenteak WHERE Id='"+Id+"'";
 				Statement st;
 				ResultSet rs;
 				
@@ -213,7 +215,7 @@ public class biltegia extends JFrame {
 				    mod2=txtMod2.getText();
 				    mod3=txtMod3.getText();
 				    mod4=txtMod4.getText();
-				    String query ="UPDATE biltegia SET "+mod1+" ='"+mod2+"', "+mod3+" ='"+mod4+"' WHERE Produktua_izena= '"+izn+"'&& Marka='"+marka+"'";
+				    String query ="UPDATE konponenteak SET "+mod1+" ='"+mod2+"', "+mod3+" ='"+mod4+"' WHERE konponenteMota= '"+izn+"'&& Marka='"+marka+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st .executeUpdate(query);
@@ -330,5 +332,33 @@ public class biltegia extends JFrame {
 		txtBalorazioa.setBounds(13, 258, 114, 19);
 		contentPane.add(txtBalorazioa);
 		txtBalorazioa.setColumns(10);
+		
+		JButton btnKendu = new JButton("Kendu");
+		btnKendu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				    konexioa kon=new konexioa();
+				    Connection conexion = kon.getConnection();
+				    String id;
+				    id=textId2.getText();
+				    String query ="DELETE FROM erronka.konponenteak WHERE img= '"+id+"'";
+				    Statement st;
+					st = conexion.createStatement();
+					st.executeUpdate(query);
+					JOptionPane.showMessageDialog(null, "Datuak ondo ezabatu dira");
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Datuak ezin dira ezabatu");
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnKendu.setBounds(10, 488, 115, 23);
+		contentPane.add(btnKendu);
+		
+		txtId_1 = new JTextField();
+		txtId_1.setText("id");
+		txtId_1.setColumns(10);
+		txtId_1.setBounds(13, 514, 86, 20);
+		contentPane.add(txtId_1);
 	}
 }

@@ -3,6 +3,7 @@ package erronka;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,7 @@ import java.awt.Color;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
-public class erronka0 extends JFrame {
+public class administadorea extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -46,8 +47,11 @@ public class erronka0 extends JFrame {
 	private JTextField txtModifikatu4;
 	private JTextField textIzena1;
 	private JTextField textAbizena1;
+	private JTextField txtHelbidea;
+	private JTextField txtSexua;
+	private JTextField txtAdmin;
 
-	public erronka0() {
+	public administadorea() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 778, 758);
 		contentPane = new JPanel();
@@ -56,25 +60,27 @@ public class erronka0 extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnHornitzailea = new JButton("Hornitzaileen taula");
-		btnHornitzailea.setBounds(4, 551, 158, 23);
+		btnHornitzailea.setBounds(4, 557, 158, 23);
 		btnHornitzailea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				konexioa kon=new konexioa();
 				Connection conexion = kon.getConnection();
-				String sql = "SELECT * FROM hornitzaile";
+				String sql = "SELECT * FROM hornitzaileak";
 				Statement st;
 				ResultSet rs;
 				
 				DefaultTableModel model =new DefaultTableModel();
 				
-				model.addColumn("Izena");
-				model.addColumn("Kokapena");
+				model.addColumn("id");
 				model.addColumn("Telefonoa");
+				model.addColumn("Enpresa");
 				model.addColumn("korreo_elektronikoa");
-				model.addColumn("ID");
+				model.addColumn("Helbidea");
+				model.addColumn("NAN");
+				model.addColumn("Testua");
 				
 				table.setModel(model);
-				String[] array = new String[5];
+				String[] array = new String[7];
 				try {
 					st=conexion.createStatement();
 					rs = st.executeQuery(sql);
@@ -85,6 +91,8 @@ public class erronka0 extends JFrame {
 						array[2]=rs.getString(3);
 						array[3]=rs.getString(4);
 						array[4]=rs.getString(5);
+						array[5]=rs.getString(6);
+						array[6]=rs.getString(7);
 						model.addRow(array);
 						
 					}
@@ -104,7 +112,7 @@ public class erronka0 extends JFrame {
 		contentPane.add(table);
 		
 		JButton btnLangileak = new JButton("Langileak");
-		btnLangileak.setBounds(4, 21, 148, 23);
+		btnLangileak.setBounds(4, 0, 148, 23);
 		btnLangileak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				konexioa kon=new konexioa();
@@ -124,9 +132,10 @@ public class erronka0 extends JFrame {
 				model.addColumn("7");
 				model.addColumn("8");
 				model.addColumn("9");
+				model.addColumn("10");
 				
 				table.setModel(model);
-				String[] array = new String[9];
+				String[] array = new String[10];
 				try {
 					st=conexion.createStatement();
 					rs = st.executeQuery(sql);
@@ -140,6 +149,7 @@ public class erronka0 extends JFrame {
 						array[6]=rs.getString(7);
 						array[7]=rs.getString(8);
 						array[8]=rs.getString(9);
+						array[9]=rs.getString(10);
 						model.addRow(array);
 						
 					}
@@ -154,7 +164,7 @@ public class erronka0 extends JFrame {
 		contentPane.add(btnLangileak);
 		
 		JButton btnBezeroak = new JButton("Bezeroen taula");
-		btnBezeroak.setBounds(4, 502, 158, 23);
+		btnBezeroak.setBounds(4, 509, 158, 23);
 		btnBezeroak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				konexioa kon=new konexioa();
@@ -202,27 +212,25 @@ public class erronka0 extends JFrame {
 		});
 		contentPane.add(btnBezeroak);
 		
-		JButton btnNewButton = new JButton("Bezeroak ordainketa");
-		btnNewButton.setBounds(4, 527, 158, 23);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnBerriak = new JButton("Berriak");
+		btnBerriak.setBounds(4, 534, 158, 23);
+		btnBerriak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				konexioa kon=new konexioa();
 				Connection conexion = kon.getConnection();
-				String sql = "SELECT DISTINCT * FROM bezeroak_ordainketak";
+				String sql = "SELECT * FROM berriak";
 				Statement st;
 				ResultSet rs;
 				
 				DefaultTableModel model =new DefaultTableModel();
 				
-				model.addColumn("Izena");
-				model.addColumn("Data");
-				model.addColumn("Ordainketa egoera");
-				model.addColumn("Ordainketa metodoa");
-				model.addColumn("Ordinketa kantitatea");
-				model.addColumn("Eskaeren egoera");
+				model.addColumn("id");
+				model.addColumn("Izenburua");
+				model.addColumn("Deskribapena");
+				model.addColumn("Data");;
 				
 				table.setModel(model);
-				String[] array = new String[6];
+				String[] array = new String[4];
 				try {
 					st=conexion.createStatement();
 					rs = st.executeQuery(sql);
@@ -232,8 +240,6 @@ public class erronka0 extends JFrame {
 						array[1]=rs.getString(2);
 						array[2]=rs.getString(3);
 						array[3]=rs.getString(4);
-						array[4]=rs.getString(5);
-						array[5]=rs.getString(6);
 						model.addRow(array);
 						
 					}
@@ -245,62 +251,15 @@ public class erronka0 extends JFrame {
 				}
 			}
 		});
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Hornitzaileen ordainketak");
-		btnNewButton_1.setBounds(4, 574, 158, 23);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
-				Connection conexion = kon.getConnection();
-				String sql = "SELECT DISTINCT * FROM hornitzaile_ordainketak";
-				Statement st;
-				ResultSet rs;
-				
-				DefaultTableModel model =new DefaultTableModel();
-				
-				model.addColumn("Izena");
-				model.addColumn("Data");
-				model.addColumn("Ordainketa egoera");
-				model.addColumn("Ordainketa metodoa");
-				model.addColumn("Ordinketa kantitatea");
-				model.addColumn("ID");
-				model.addColumn("NAN");
-				
-				table.setModel(model);
-				String[] array = new String[7];
-				try {
-					st=conexion.createStatement();
-					rs = st.executeQuery(sql);
-					while (rs.next()) {
-						//System.out.println(rs.getString(2));
-						array[0]=rs.getString(1);
-						array[1]=rs.getString(2);
-						array[2]=rs.getString(3);
-						array[3]=rs.getString(4);
-						array[4]=rs.getString(5);
-						array[5]=rs.getString(6);
-						array[6]=rs.getString(7);
-						model.addRow(array);
-						
-					}
-					
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		contentPane.add(btnNewButton_1);
+		contentPane.add(btnBerriak);
 		
 		JButton btnbiltegia = new JButton("Biltegia");
-		btnbiltegia.setBounds(4, 598, 158, 23);
+		btnbiltegia.setBounds(4, 581, 158, 23);
 		btnbiltegia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				konexioa kon=new konexioa();
 				Connection conexion = kon.getConnection();
-				String sql = "SELECT * FROM biltegia";
+				String sql = "SELECT * FROM konponenteak";
 				Statement st;
 				ResultSet rs;
 				
@@ -344,13 +303,13 @@ public class erronka0 extends JFrame {
 		contentPane.add(btnbiltegia);
 		
 		JButton btnGehitu = new JButton("Langileak gehitu");
-		btnGehitu.setBounds(4, 45, 148, 23);
+		btnGehitu.setBounds(4, 25, 148, 23);
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				    konexioa kon=new konexioa();
 				    Connection conexion = kon.getConnection();
-				    String izena,abz1,abz2,Nan,BankuZenb,funtzioa,korreoa;
+				    String izena,abz1,abz2,Nan,BankuZenb,funtzioa,korreoa,helbidea,sexua,admin;
 				    izena=txtIzena1.getText();
 				    abz1=txtAbz1.getText();
 				    abz2=txtAbz2.getText();
@@ -358,14 +317,17 @@ public class erronka0 extends JFrame {
 				    BankuZenb=txtBankuZenb.getText();
 				    funtzioa=txtLana.getText();
 				    korreoa=txtKorreoa.getText();
-				    String query ="INSERT INTO db1.langileak"
-						+ " Values('"+izena+"', '"+abz1+"', '"+abz2+"', '"+Nan+"', '"+BankuZenb+"', '"+funtzioa+"', '"+korreoa+"')";
+				    helbidea=txtHelbidea.getText();
+				    sexua=txtSexua.getText();
+				    admin=txtAdmin.getText();
+				    String query ="INSERT INTO erronka.langileak"
+						+ " Values('"+izena+"', '"+abz1+"', '"+abz2+"', '"+Nan+"', '"+BankuZenb+"', '"+funtzioa+"', '"+korreoa+"', '"+helbidea+"', '"+sexua+"', "+admin+")";
 				    Statement stmt;
 					stmt = conexion.createStatement();
 					stmt .executeUpdate(query);
-					System.out.println("Langile bat gehitu duzu");
+					JOptionPane.showMessageDialog(null, "Datuak ondo gehitu dira");
 				} catch (SQLException e1) {
-					System.out.println("Error!!!");
+					JOptionPane.showMessageDialog(null, "Datuak ezin dira gehitu");
 					e1.printStackTrace();
 				}
 				
@@ -374,6 +336,7 @@ public class erronka0 extends JFrame {
 		contentPane.add(btnGehitu);
 		
 		JButton btnKendu = new JButton("Langileak kendu");
+		btnKendu.setBounds(4, 276, 158, 23);
 		btnKendu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -382,21 +345,21 @@ public class erronka0 extends JFrame {
 				    String langilea, abizena;
 				    langilea=txtName.getText();
 				    abizena=textAbizena2.getText();
-				    String query ="DELETE FROM db1.langileak WHERE izena= '"+langilea+"'&& abizena1= '"+abizena+"'";
+				    String query ="DELETE FROM erronka.langileak WHERE izena= '"+langilea+"'&& abizena1= '"+abizena+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);
-					System.out.println("Langile bat ezabatu duzu");
+					JOptionPane.showMessageDialog(null, "Datuak ondo ezabatu dira");
 				} catch (SQLException e1) {
-					System.out.println("Error!!!");
+					JOptionPane.showMessageDialog(null, "Datuak ezin dira ezabatu");
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnKendu.setBounds(4, 240, 158, 23);
 		contentPane.add(btnKendu);
 		
 		JButton btnAktualizatu = new JButton("Taula aktualizatu");
+		btnAktualizatu.setBounds(4, 345, 158, 23);
 		btnAktualizatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -413,106 +376,123 @@ public class erronka0 extends JFrame {
 				    Statement st;
 					st = conexion.createStatement();
 					st .executeUpdate(query);
-					System.out.println("Usuario bat ezabatu duzu");
+					JOptionPane.showMessageDialog(null, "Datuak ondo aldatu dira");
 				} catch (SQLException e1) {
-					System.out.println("Error!!!");
+					JOptionPane.showMessageDialog(null, "Datuak ez dira aldatu");
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnAktualizatu.setBounds(4, 328, 158, 23);
 		contentPane.add(btnAktualizatu);
 		
 		txtIzena1 = new JTextField();
-		txtIzena1.setBounds(4, 69, 132, 20);
+		txtIzena1.setBounds(4, 50, 132, 20);
 		txtIzena1.setText("Izena");
 		contentPane.add(txtIzena1);
 		txtIzena1.setColumns(10);
 		
 		txtName = new JTextField();
+		txtName.setBounds(4, 301, 132, 20);
 		txtName.setText("Izena");
-		txtName.setBounds(4, 283, 132, 20);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
 		
 		textAbizena2 = new JTextField();
+		textAbizena2.setBounds(4, 324, 132, 20);
 		textAbizena2.setText("Abizena");
-		textAbizena2.setBounds(4, 304, 132, 20);
 		contentPane.add(textAbizena2);
 		textAbizena2.setColumns(10);
 		
 		txtModifikatu1 = new JTextField();
+		txtModifikatu1.setBounds(4, 416, 174, 20);
 		txtModifikatu1.setText("Modifikatu nahi den elementua");
-		txtModifikatu1.setBounds(4, 410, 174, 20);
 		contentPane.add(txtModifikatu1);
 		txtModifikatu1.setColumns(10);
 		
 		txtModifikatu2 = new JTextField();
+		txtModifikatu2.setBounds(4, 440, 174, 20);
 		txtModifikatu2.setText("Modifikazioa");
-		txtModifikatu2.setBounds(4, 433, 174, 20);
 		contentPane.add(txtModifikatu2);
 		txtModifikatu2.setColumns(10);
 		
 		txtModifikatu3 = new JTextField();
+		txtModifikatu3.setBounds(4, 467, 174, 20);
 		txtModifikatu3.setText("Modifikatu nahi den elementua");
-		txtModifikatu3.setBounds(4, 456, 174, 20);
 		contentPane.add(txtModifikatu3);
 		txtModifikatu3.setColumns(10);
 		
 		txtModifikatu4 = new JTextField();
+		txtModifikatu4.setBounds(4, 488, 174, 20);
 		txtModifikatu4.setText("Modifikazioa");
-		txtModifikatu4.setBounds(4, 480, 174, 20);
 		contentPane.add(txtModifikatu4);
 		txtModifikatu4.setColumns(10);
 		
 		textIzena1 = new JTextField();
+		textIzena1.setBounds(4, 373, 132, 20);
 		textIzena1.setText("Izena");
 		textIzena1.setToolTipText("");
-		textIzena1.setBounds(4, 362, 132, 20);
 		contentPane.add(textIzena1);
 		textIzena1.setColumns(10);
 		
 		textAbizena1 = new JTextField();
+		textAbizena1.setBounds(4, 394, 132, 20);
 		textAbizena1.setText("Abizena");
-		textAbizena1.setBounds(4, 388, 132, 20);
 		contentPane.add(textAbizena1);
 		textAbizena1.setColumns(10);
 		
 		txtAbz2 = new JTextField();
-		txtAbz2.setBounds(4, 110, 132, 20);
+		txtAbz2.setBounds(4, 90, 132, 20);
 		txtAbz2.setText("Bigarren abizena");
 		contentPane.add(txtAbz2);
 		txtAbz2.setColumns(10);
 		
 		txtNan = new JTextField();
-		txtNan.setBounds(4, 132, 132, 20);
+		txtNan.setBounds(4, 110, 132, 20);
 		txtNan.setText("NAN");
 		contentPane.add(txtNan);
 		txtNan.setColumns(10);
 		
 		txtBankuZenb = new JTextField();
-		txtBankuZenb.setBounds(4, 151, 132, 20);
+		txtBankuZenb.setBounds(4, 131, 132, 20);
 		txtBankuZenb.setText("Banku zenbakia");
 		contentPane.add(txtBankuZenb);
 		txtBankuZenb.setColumns(10);
 		
 		txtLana = new JTextField();
-		txtLana.setBounds(4, 174, 132, 20);
+		txtLana.setBounds(4, 152, 132, 20);
 		txtLana.setText("Lan-postua");
 		contentPane.add(txtLana);
 		txtLana.setColumns(10);
 		
 		txtKorreoa = new JTextField();
-		txtKorreoa.setBounds(4, 196, 132, 20);
+		txtKorreoa.setBounds(4, 173, 132, 20);
 		txtKorreoa.setText("Korreoa");
 		contentPane.add(txtKorreoa);
 		txtKorreoa.setColumns(10);
 		
 		txtAbz1 = new JTextField();
-		txtAbz1.setBounds(4, 89, 132, 20);
+		txtAbz1.setBounds(4, 70, 132, 20);
 		txtAbz1.setText("Lehen abizena");
 		contentPane.add(txtAbz1);
 		txtAbz1.setColumns(10);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnKendu, btnHornitzailea, table, btnLangileak, btnBezeroak, btnNewButton, btnNewButton_1, btnbiltegia, btnGehitu, btnAktualizatu, txtIzena1, txtName, textAbizena2, txtModifikatu1, txtModifikatu2, txtModifikatu3, txtModifikatu4, textIzena1, textAbizena1, txtAbz2, txtNan, txtBankuZenb, txtLana, txtKorreoa, txtAbz1}));
+		
+		txtHelbidea = new JTextField();
+		txtHelbidea.setText("Helbidea");
+		txtHelbidea.setColumns(10);
+		txtHelbidea.setBounds(4, 195, 132, 20);
+		contentPane.add(txtHelbidea);
+		
+		txtSexua = new JTextField();
+		txtSexua.setText("Sexua");
+		txtSexua.setColumns(10);
+		txtSexua.setBounds(4, 217, 132, 20);
+		contentPane.add(txtSexua);
+		
+		txtAdmin = new JTextField();
+		txtAdmin.setText("Admin");
+		txtAdmin.setColumns(10);
+		txtAdmin.setBounds(4, 239, 132, 20);
+		contentPane.add(txtAdmin);
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnKendu, btnHornitzailea, table, btnLangileak, btnBezeroak, btnBerriak, btnbiltegia, btnGehitu, btnAktualizatu, txtIzena1, txtName, textAbizena2, txtModifikatu1, txtModifikatu2, txtModifikatu3, txtModifikatu4, textIzena1, textAbizena1, txtAbz2, txtNan, txtBankuZenb, txtLana, txtKorreoa, txtAbz1, txtHelbidea, txtSexua, txtAdmin}));
 	}
 }

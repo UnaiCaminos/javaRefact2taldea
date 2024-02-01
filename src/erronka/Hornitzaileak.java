@@ -5,6 +5,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +55,7 @@ public class Hornitzaileak extends JFrame {
 				like=txtLetra.getText();
 				konexioa kon=new konexioa();
 				Connection conexion = kon.getConnection();
-				String sql = "SELECT * FROM hornitzaileak WHERE Izena like'"+like+"%'";
+				String sql = "SELECT * FROM hornitzaileak WHERE EnpresarenIzena like'"+like+"%'";
 				Statement st;
 				ResultSet rs;
 				
@@ -163,9 +164,9 @@ public class Hornitzaileak extends JFrame {
 				
 					stmt = conexion.createStatement();
 					stmt .executeUpdate(query);
-					System.out.println("Usuario bat gehitu duzu");
+					JOptionPane.showMessageDialog(null, "Datuak ondo gehitu dira");
 				} catch (SQLException e1) {
-					System.out.println("Error!!!");
+					JOptionPane.showMessageDialog(null, "Datuak ezin dira gehitu");
 					e1.printStackTrace();
 				}
 			}
@@ -182,13 +183,13 @@ public class Hornitzaileak extends JFrame {
 				    String izena, Id2;
 				    izena=txtName.getText();
 				    Id2=txtId2.getText();
-				    String query ="DELETE FROM erronka.hornitzaileak WHERE Izena= '"+izena+"'&& Id= '"+Id2+"'";
+				    String query ="DELETE FROM erronka.hornitzaileak WHERE EnpresarenIzena= '"+izena+"'&& id= '"+Id2+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);
-					System.out.println("Usuario bat ezabatu duzu");
+					JOptionPane.showMessageDialog(null, "Datuak ondo ezabatu dira");
 				} catch (SQLException e1) {
-					System.out.println("Error!!!");
+					JOptionPane.showMessageDialog(null, "Datuak ezin dira ezabatu");
 					e1.printStackTrace();
 				}
 			}

@@ -14,8 +14,7 @@ public class konexioa {
 	
 	static {
 		try {
-			Class.forName(url);
-			JOptionPane.showMessageDialog(null, "Driver Conectado");
+			Class.forName(BBDD);
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Driver no Conectado");
@@ -26,7 +25,6 @@ public class konexioa {
 		public Connection getConnection() {
 			try {
 				con=DriverManager.getConnection(url, usuario, contraseña);
-				JOptionPane.showMessageDialog(null, "Conexion a Mysql Correcta");
 			}catch (SQLException e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(null, "Error de Conexion");
