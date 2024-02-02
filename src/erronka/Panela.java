@@ -36,8 +36,7 @@ public class Panela extends JFrame {
 		btnBezeroa.setBounds(0, 0, 256, 101);
 		contentPane.add(btnBezeroa);
 		
-		JButton btnHornitzailea = new JButton("Hornitzailea");
-		btnHornitzailea.addActionListener(new ActionListener() {
+		new JButton("Hornitzailea").addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        if(user.equals("Celia")||user.equals("Beñat")||user.equals("Raúl")) {
 					Hornitzaileak frame = new Hornitzaileak();
@@ -45,8 +44,8 @@ public class Panela extends JFrame {
 					}else System.out.println("Baimena ukatua");
 			}
 		});
-		btnHornitzailea.setBounds(258, 0, 216, 101);
-		contentPane.add(btnHornitzailea);
+		new JButton("Hornitzailea").setBounds(258, 0, 216, 101);
+		contentPane.add(new JButton("Hornitzailea"));
 		
 		JButton btnBiltegia = new JButton("Biltegia");
 		btnBiltegia.addActionListener(new ActionListener() {
