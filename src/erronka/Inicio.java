@@ -80,7 +80,7 @@ public class Inicio extends JFrame {
 			        user=textUser.getText();
 			        pwd= textPwd.getText();
 			        String kontsulta ="SELECT DISTINCT * FROM langileak WHERE izena='"+user+"' && admin= 0 && nan='"+pwd+"'";
-			        konexioaServer kon=new konexioaServer();
+			        konexioaLocal kon=new konexioaLocal();
 					Connection conexion = kon.getConnection();
 					Statement st;
 					ResultSet rs;
@@ -100,7 +100,7 @@ public class Inicio extends JFrame {
 						e1.printStackTrace();
 					}
 					 String kontsulta2 ="SELECT DISTINCT * FROM langileak WHERE izena='"+user+"' && admin=1 && nan='"+pwd+"'";
-				        konexioaServer kon2=new konexioaServer();
+				        konexioaLocal kon2=new konexioaLocal();
 						Connection conexion2 = kon2.getConnection();
 						Statement st2;
 						ResultSet rs2;
@@ -110,7 +110,7 @@ public class Inicio extends JFrame {
 							while(rs2.next()) {
 								if(pwd.equals(rs2.getString(4))) {
 									System.out.println("ONDO DA!");
-									administadorea frame = new administadorea();
+									administratzailea frame = new administratzailea();
 									frame.setVisible(true);
 								}else System.out.println("PASAHITZ OKERRA");
 							}
