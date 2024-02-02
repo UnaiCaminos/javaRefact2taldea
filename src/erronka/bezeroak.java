@@ -45,7 +45,7 @@ public class bezeroak extends JFrame {
 		JButton btnTaula = new JButton("Taula");
 		btnTaula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioaServer kon=new konexioaServer();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM bezeroak";
 				Statement st;
@@ -93,7 +93,7 @@ public class bezeroak extends JFrame {
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioaServer kon=new konexioaServer();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izn,abz1,abz2,nan,bankuNum,helbidea;
 				    izn=txtIzena.getText();
@@ -121,7 +121,7 @@ public class bezeroak extends JFrame {
 		btnKendu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioaServer kon=new konexioaServer();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izn, nan;
 				    izn=txtIzena1.getText();
@@ -144,7 +144,7 @@ public class bezeroak extends JFrame {
 		btnAktualizatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioaServer kon=new konexioaServer();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String mod1, mod2, mod3, mod4, izn, abz;
 				    izn=txtIzena2.getText();
@@ -170,7 +170,7 @@ public class bezeroak extends JFrame {
 		btnBilatu = new JButton("Bilatu");
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioaServer kon=new konexioaServer();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String letra;
 				letra=txtLetra.getText();

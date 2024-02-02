@@ -50,7 +50,7 @@ public class Hornitzaileak extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String like;
 				like=txtLetra.getText();
-				konexioaServer kon=new konexioaServer();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM hornitzaileak WHERE EnpresarenIzena like'"+like+"%'";
 				Statement st;
@@ -97,7 +97,7 @@ public class Hornitzaileak extends JFrame {
 		btnTaula = new JButton("Taula");
 		btnTaula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioaServer kon=new konexioaServer();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM hornitzaileak";
 				Statement st;
@@ -145,7 +145,7 @@ public class Hornitzaileak extends JFrame {
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioaServer kon=new konexioaServer();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izn,tel,helbidea,Id,korreoa,nan,testua;
 				    izn=txtIzena.getText();
@@ -175,7 +175,7 @@ public class Hornitzaileak extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioaServer kon=new konexioaServer();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izena, Id2;
 				    izena=txtName.getText();
