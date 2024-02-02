@@ -12,6 +12,7 @@ public class Panela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnBiltegia;
 
 	public Panela(String user) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -33,11 +34,10 @@ public class Panela extends JFrame {
 						}else System.out.println("Baimena ukatua");
 			}
 		});
-		btnBezeroa.setBounds(0, 0, 256, 101);
+		btnBezeroa.setBounds(0, 0, 256, 191);
 		contentPane.add(btnBezeroa);
 		
-		JButton btnHornitzailea = new JButton("Hornitzailea");
-		btnHornitzailea.addActionListener(new ActionListener() {
+		new JButton("Hornitzailea").addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        if(user.equals("Celia")||user.equals("Beñat")||user.equals("Raúl")) {
 					Hornitzaileak frame = new Hornitzaileak();
@@ -45,36 +45,20 @@ public class Panela extends JFrame {
 					}else System.out.println("Baimena ukatua");
 			}
 		});
-		btnHornitzailea.setBounds(258, 0, 216, 101);
-		contentPane.add(btnHornitzailea);
 		
-		JButton btnBiltegia = new JButton("Biltegia");
+		btnBiltegia = new JButton("Biltegia");
 		btnBiltegia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(user.equals("Laura")||user.equals("Beñat")||user.equals("Martín")||user.equals("Miguel")||user.equals("Javier")||user.equals("Sara")||user.equals("Sergio")||user.equals("Daniel")||user.equals("Juan")) {
 							System.out.println("ONDO DA!");
-							konponenteak frame = new konponenteak();
+							JFrame frame = new konponenteak();
 							frame.setVisible(true);
 						}else System.out.println("Baimena ukatua");
 			}
 			
 		});
-		btnBiltegia.setBounds(0, 101, 256, 149);
+		btnBiltegia.setBounds(0, 191, 524, 214);
 		contentPane.add(btnBiltegia);
-		
-		JButton btnBerriak = new JButton("Berriak");
-		btnBerriak.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(user.equals("Martín")||user.equals("Miguel")||user.equals("Juan")||user.equals("Daniel")) {
-					System.out.println("ONDO DA!");
-					berriak frame = new berriak();
-					frame.setVisible(true);
-				}else System.out.println("Baimena ukatua");
-	        }
-			
-		});
-		btnBerriak.setBounds(256, 101, 218, 149);
-		contentPane.add(btnBerriak);
 		
 		
 	}

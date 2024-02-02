@@ -1,7 +1,6 @@
 package erronka;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -9,25 +8,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
-public class administadorea extends JFrame {
+public class administratzailea extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -51,7 +45,7 @@ public class administadorea extends JFrame {
 	private JTextField txtSexua;
 	private JTextField txtAdmin;
 
-	public administadorea() {
+	public administratzailea() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 778, 758);
 		contentPane = new JPanel();
@@ -63,7 +57,7 @@ public class administadorea extends JFrame {
 		btnHornitzailea.setBounds(4, 557, 158, 23);
 		btnHornitzailea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM hornitzaileak";
 				Statement st;
@@ -115,7 +109,7 @@ public class administadorea extends JFrame {
 		btnLangileak.setBounds(4, 0, 148, 23);
 		btnLangileak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM Langileak";
 				Statement st;
@@ -167,7 +161,7 @@ public class administadorea extends JFrame {
 		btnBezeroak.setBounds(4, 509, 158, 23);
 		btnBezeroak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT DISTINCT * FROM bezeroak";
 				Statement st;
@@ -216,7 +210,7 @@ public class administadorea extends JFrame {
 		btnBerriak.setBounds(4, 534, 158, 23);
 		btnBerriak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM berriak";
 				Statement st;
@@ -257,7 +251,7 @@ public class administadorea extends JFrame {
 		btnbiltegia.setBounds(4, 581, 158, 23);
 		btnbiltegia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM konponenteak";
 				Statement st;
@@ -307,7 +301,7 @@ public class administadorea extends JFrame {
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izena,abz1,abz2,Nan,BankuZenb,funtzioa,korreoa,helbidea,sexua,admin;
 				    izena=txtIzena1.getText();
@@ -340,7 +334,7 @@ public class administadorea extends JFrame {
 		btnKendu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String langilea, abizena;
 				    langilea=txtName.getText();
@@ -363,7 +357,7 @@ public class administadorea extends JFrame {
 		btnAktualizatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String mod1, mod2, mod3, mod4, izn, abz;
 				    izn=textIzena1.getText();

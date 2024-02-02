@@ -1,3 +1,4 @@
+
 package erronka;
 
 import java.sql.Connection;
@@ -6,15 +7,15 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-public class konexioa {
-	private static String BBDD="com.mysql.cj.jdbc.Driver";
+public class konexioaLocal {
 	private static String usuario="root";
 	private static String contraseña="1WMG2023";
-	public static String url="jdbc:mysql://localhost:3306/erronka";
+    private static String url = "jdbc:mysql://localhost:3306/erronka";
+    private static String BBDD = "com.mysql.cj.jdbc.Driver";
 	
 	static {
 		try {
-			Class.forName(BBDD);
+			Class.forName(konexioaLocal.BBDD);
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Driver no Conectado");
@@ -22,6 +23,7 @@ public class konexioa {
 	}
 	
 		Connection con=null;
+		
 		public Connection getConnection() {
 			try {
 				con=DriverManager.getConnection(url, usuario, contraseña);
@@ -32,4 +34,3 @@ public class konexioa {
 			return con;
 		}
 }
-

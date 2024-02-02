@@ -2,8 +2,6 @@ package erronka;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,7 +16,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class Hornitzaileak extends JFrame {
 
@@ -53,7 +50,7 @@ public class Hornitzaileak extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String like;
 				like=txtLetra.getText();
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM hornitzaileak WHERE EnpresarenIzena like'"+like+"%'";
 				Statement st;
@@ -100,7 +97,7 @@ public class Hornitzaileak extends JFrame {
 		btnTaula = new JButton("Taula");
 		btnTaula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM hornitzaileak";
 				Statement st;
@@ -148,7 +145,7 @@ public class Hornitzaileak extends JFrame {
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izn,tel,helbidea,Id,korreoa,nan,testua;
 				    izn=txtIzena.getText();
@@ -178,7 +175,7 @@ public class Hornitzaileak extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String izena, Id2;
 				    izena=txtName.getText();

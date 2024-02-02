@@ -2,8 +2,6 @@ package erronka;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -11,20 +9,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
+import erronka.konexioaLocal;
 
 
 public class konponenteak extends JFrame {
@@ -68,7 +63,7 @@ public class konponenteak extends JFrame {
 		JButton btnNewButton = new JButton("Taula");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String sql = "SELECT * FROM konponenteak";
 				Statement st;
@@ -122,7 +117,7 @@ public class konponenteak extends JFrame {
 		btnGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String id,mota,modeloa,img,deskribapena,kantitatea,prezioa,berria,marka,balorazioa;
 				    mota=txtmota.getText();
@@ -154,7 +149,7 @@ public class konponenteak extends JFrame {
 		btnIdinfo = new JButton("Id_info");
 		btnIdinfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				konexioa kon=new konexioa();
+				konexioaLocal kon=new konexioaLocal();
 				Connection conexion = kon.getConnection();
 				String Id;
 				Id=textId2.getText();
@@ -206,7 +201,7 @@ public class konponenteak extends JFrame {
 		btnAktualizatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String mod1, mod2, mod3, mod4, izn, marka;
 				    izn=txtIzena.getText();
@@ -337,11 +332,11 @@ public class konponenteak extends JFrame {
 		btnKendu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				    konexioa kon=new konexioa();
+				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
 				    String id;
 				    id=textId2.getText();
-				    String query ="DELETE FROM erronka.konponenteak WHERE img= '"+id+"'";
+				    String query ="DELETE FROM erronka.konponenteak WHERE id= "+id;
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);
