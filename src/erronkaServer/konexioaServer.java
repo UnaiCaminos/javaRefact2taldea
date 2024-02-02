@@ -21,14 +21,15 @@ public class konexioaServer {
 		}
 	}
 	
-		konexioaServerData data = new konexioaServerData(null);
-		public Connection getConnection() {
-			try {
-				data.con2=DriverManager.getConnection(url, usuario, contraseña);
-			}catch (SQLException e) {
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Error de Conexion");
-			}
-			return data.con2;
+	Connection con=null;
+	
+	public Connection getConnection() {
+		try {
+			con=DriverManager.getConnection(url, usuario, contraseña);
+		}catch (SQLException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error de Conexion");
 		}
+		return con;
+	}
 }

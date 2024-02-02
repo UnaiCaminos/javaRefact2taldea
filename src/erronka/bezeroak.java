@@ -95,7 +95,12 @@ public class bezeroak extends JFrame {
 				try {
 				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
-				    String izn,abz1,abz2,nan,bankuNum,helbidea;
+                    String izn;
+					String abz1;
+					String abz2;
+					String nan;
+					String bankuNum;
+					String helbidea;
 				    izn=txtIzena.getText();
 				    abz1=txtAbizena1.getText();
 				    abz2=txtAbizena2.getText();
@@ -112,6 +117,13 @@ public class bezeroak extends JFrame {
 					JOptionPane.showMessageDialog(null, "Datuak ezin dira gehitu");
 					e1.printStackTrace();
 				}
+			}
+
+			/**
+			 * 
+			 */
+			private void extracted() {
+				String izn,abz1,abz2,nan,bankuNum,helbidea;
 			}
 		});
 		btnGehitu.setBounds(10, 32, 101, 21);
