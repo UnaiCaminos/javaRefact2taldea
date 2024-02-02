@@ -39,6 +39,7 @@ public class Inicio extends JFrame {
 		});
 	}
 
+	
 	public Inicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
