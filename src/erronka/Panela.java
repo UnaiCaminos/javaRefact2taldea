@@ -33,7 +33,7 @@ public class Panela extends JFrame {
 						}else System.out.println("Baimena ukatua");
 			}
 		});
-		btnBezeroa.setBounds(0, 0, 256, 101);
+		btnBezeroa.setBounds(0, 0, 256, 191);
 		contentPane.add(btnBezeroa);
 		
 		new JButton("Hornitzailea").addActionListener(new ActionListener() {
@@ -44,36 +44,27 @@ public class Panela extends JFrame {
 					}else System.out.println("Baimena ukatua");
 			}
 		});
+<<<<<<< HEAD
 		new JButton("Hornitzailea").setBounds(258, 0, 216, 101);
 		contentPane.add(new JButton("Hornitzailea"));
+=======
+		btnHornitzailea.setBounds(258, 0, 266, 191);
+		contentPane.add(btnHornitzailea);
+>>>>>>> b982bab9d706937193e80286850f900c2357fd42
 		
 		JButton btnBiltegia = new JButton("Biltegia");
 		btnBiltegia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(user.equals("Laura")||user.equals("Beñat")||user.equals("Martín")||user.equals("Miguel")||user.equals("Javier")||user.equals("Sara")||user.equals("Sergio")||user.equals("Daniel")||user.equals("Juan")) {
 							System.out.println("ONDO DA!");
-							konponenteak frame = new konponenteak();
+							JFrame frame = new konponenteak();
 							frame.setVisible(true);
 						}else System.out.println("Baimena ukatua");
 			}
 			
 		});
-		btnBiltegia.setBounds(0, 101, 256, 149);
+		btnBiltegia.setBounds(0, 191, 524, 214);
 		contentPane.add(btnBiltegia);
-		
-		JButton btnBerriak = new JButton("Berriak");
-		btnBerriak.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(user.equals("Martín")||user.equals("Miguel")||user.equals("Juan")||user.equals("Daniel")) {
-					System.out.println("ONDO DA!");
-					berriak frame = new berriak();
-					frame.setVisible(true);
-				}else System.out.println("Baimena ukatua");
-	        }
-			
-		});
-		btnBerriak.setBounds(256, 101, 218, 149);
-		contentPane.add(btnBerriak);
 		
 		
 	}
