@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-public class konexioa {
+public class konexioaServer {
 	private static String BBDD="com.mysql.cj.jdbc.Driver";
-	private static String usuario="root";
-	private static String contraseña="1WMG2023";
-	public static String url="jdbc:mysql://localhost:3306/erronka";
+	private static String usuario="2taldea";
+	private static String contraseña="2taldea@";
+	public static String url="jdbc:mysql://192.168.115.2:3306/erronka2";
 	
 	static {
 		try {
@@ -21,15 +21,15 @@ public class konexioa {
 		}
 	}
 	
-		Connection con=null;
+		Connection con2=null;
 		public Connection getConnection() {
 			try {
-				con=DriverManager.getConnection(url, usuario, contraseña);
+				con2=DriverManager.getConnection(url, usuario, contraseña);
 			}catch (SQLException e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(null, "Error de Conexion");
 			}
-			return con;
+			return con2;
 		}
 }
 
