@@ -118,17 +118,7 @@ public class konponenteak extends JFrame {
 				try {
 				    konexioaLocal kon=new konexioaLocal();
 				    Connection conexion = kon.getConnection();
-				    String id;
-					String mota;
-					String modeloa;
-					String img;
-					String deskribapena;
-					String kantitatea;
-					String prezioa;
-					String berria;
-					String marka;
-					String balorazioa;
-					extracted();
+				    String id, mota, modeloa, img, deskribapena, kantitatea, prezioa, berria, marka, balorazioa;
 				    mota=txtmota.getText();
 				    img=txtImg1.getText();
 				    modeloa=txtModeloa.getText();
@@ -150,13 +140,6 @@ public class konponenteak extends JFrame {
 					showMessageDialog(null, "Arazoak datuak taulan gehitzerakoan");
 					e1.printStackTrace();
 				}
-			}
-
-			/**
-			 * 
-			 */
-			private void extracted() {
-				String id,mota,modeloa,img,deskribapena,kantitatea,prezioa,berria,marka,balorazioa;
 			}
 		});
 		btnGehitu.setBounds(10, 31, 89, 23);
