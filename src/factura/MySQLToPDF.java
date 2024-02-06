@@ -13,8 +13,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-
-import erronka.konexioaLocal;
+import com.itextpdf.text.Image;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,6 +39,9 @@ public class MYSQLToPDF extends JFrame {
 	private JTable table;
 	private JButton btnAktualizatu;
 	private JTextField txtId;
+	private JTextField txtNan;
+	private JButton btnPdf;
+	private JTextField txtIzena;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -52,8 +54,21 @@ public class MYSQLToPDF extends JFrame {
 				}
 			}
 		});
+		    }
+	
+	public MYSQLToPDF() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 705, 580);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		        Connection connection = null;
+		btnPdf = new JButton("Pdf-a sortu");
+		btnPdf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection connection = null;
 
 		        try {
 		            
@@ -61,12 +76,14 @@ public class MYSQLToPDF extends JFrame {
 		            String usuario = "2taldea";
 		            String contraseña = "2taldea@";
 		            connection = DriverManager.getConnection(url, usuario, contraseña);
-
-		            String query = "SELECT nan, izena, abizena1, prezioTotala, konponenteMota, modelo, marka, kopurua"
-		            		+ "FROM saskia"
-		            		+ "JOIN bezeroak ON saskia.nan_bezeroa = bezeroak.nan"
-		            		+ "JOIN produktueskaera ON saskia.id_eskaera = produktueskaera.idEskaera"
-		            		+ "JOIN konponenteak ON produktueskaera.idProduktua = konponenteak.id";
+                    String Nan;
+                    Nan=txtNan.getText();
+		            String query = "SELECT nan, izena, abizena1, produktukoPrezioa, konponenteMota, modelo, marka, kopurua"
+		            		+ " FROM saskia "
+		            		+ " JOIN bezeroak ON saskia.nan_bezeroa = bezeroak.nan "
+		            		+ " JOIN produktueskaera ON saskia.id_eskaera = produktueskaera.idEskaera "
+		            		+ " JOIN konponenteak ON produktueskaera.idProduktua = konponenteak.id"
+		            		+ " WHERE saskia.nan_bezeroa ='"+Nan+"'";
 		            PreparedStatement preparedStatement = connection.prepareStatement(query);
 		            ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -75,32 +92,34 @@ public class MYSQLToPDF extends JFrame {
 		            File carpeta = new File(dok);
 
 		            // Karpeta espezifikatuan pdf-a sortu
-		            String pdf = "faktura.pdf";
+		            String izn;
+		            izn = txtIzena.getText();
+		            String pdf = izn+".pdf";
 		            Document document = new Document();
 		            try {
 						PdfWriter.getInstance(document, new FileOutputStream(dok + File.separator + pdf));
-					} catch (FileNotFoundException e) {
+					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						e1.printStackTrace();
 					}
 		            document.open();
-
+		            
 		            //Datuak pdf-an gehitu
 		            while (resultSet.next()) {
 		                String nan = resultSet.getString("nan");
 		                String izena = resultSet.getString("izena");
 		                String abizena1 = resultSet.getString("abizena1");
-		                String prezioTotala = resultSet.getString("prezioTotala");
-		                String konponenteMota = resultSet.getString("mota");
-		                String modelo = resultSet.getString("modeloa");
+		                String produktukoPrezioa = resultSet.getString("produktukoPrezioa");
+		                String konponenteMota = resultSet.getString("konponenteMota");
+		                String modelo = resultSet.getString("modelo");
 		                String marka = resultSet.getString("marka");
 		                String kopurua = resultSet.getString("kopurua");
 		                // Resto de las variables de la primera consulta
-
+		                
 		                document.add(new Paragraph("NAN: " + nan));
 		                document.add(new Paragraph("Izena: " + izena));
-		                document.add(new Paragraph("Abizena1: " + abizena1));
-		                document.add(new Paragraph("Prezio Totala: " + prezioTotala));
+		                document.add(new Paragraph("Abizena: " + abizena1));
+		                document.add(new Paragraph("Produktuaren prezioa: " + produktukoPrezioa));
 		                document.add(new Paragraph("Produktua: " + konponenteMota));
 		                document.add(new Paragraph("Modeloa: " + modelo));
 		                document.add(new Paragraph("Marka: " + marka));
@@ -112,21 +131,15 @@ public class MYSQLToPDF extends JFrame {
 		            document.close();
 		            connection.close();
 
-		            System.out.println("PDF creado con éxito en la carpeta: " + dok);
+		            System.out.println("PDF sortu da karpeta honetan: " + dok);
 		            
-		        } catch (SQLException | DocumentException e) {
-		            e.printStackTrace();
+		        } catch (SQLException | DocumentException e1) {
+		            e1.printStackTrace();
 		        }
-		    }
-	
-	public MYSQLToPDF() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 576, 516);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+			}
+		});
+		btnPdf.setBounds(10, 26, 112, 23);
+		contentPane.add(btnPdf);
 		
 		JButton btnTaula = new JButton("Taula");
 		btnTaula.addActionListener(new ActionListener() {
@@ -165,11 +178,11 @@ public class MYSQLToPDF extends JFrame {
 				}
 			}
 		});
-		btnTaula.setBounds(10, 24, 112, 23);
+		btnTaula.setBounds(10, 134, 112, 23);
 		contentPane.add(btnTaula);
 		
 		table = new JTable();
-		table.setBounds(146, 14, 406, 441);
+		table.setBounds(215, 10, 406, 441);
 		contentPane.add(table);
 		
 		btnAktualizatu = new JButton("Aktualizatu");
@@ -191,13 +204,26 @@ public class MYSQLToPDF extends JFrame {
 				}
 			}
 		});
-		btnAktualizatu.setBounds(10, 49, 112, 23);
+		btnAktualizatu.setBounds(10, 167, 112, 23);
 		contentPane.add(btnAktualizatu);
 		
 		txtId = new JTextField();
 		txtId.setText("Eskariaren id");
 		txtId.setColumns(10);
-		txtId.setBounds(11, 73, 125, 20);
+		txtId.setBounds(10, 200, 125, 20);
 		contentPane.add(txtId);
+		
+		txtNan = new JTextField();
+		txtNan.setText("Faktura sortuko zaion bezeroaren nan-a");
+		txtNan.setColumns(10);
+		txtNan.setBounds(10, 59, 210, 20);
+		contentPane.add(txtNan);
+		
+		
+		txtIzena = new JTextField();
+		txtIzena.setText("Pdf-aren izena");
+		txtIzena.setColumns(10);
+		txtIzena.setBounds(10, 89, 125, 20);
+		contentPane.add(txtIzena);
 	}
 }
