@@ -120,6 +120,7 @@ public class MYSQLToPDF extends JFrame {
 		            title.setAlignment(Element.ALIGN_CENTER); // Titulua erdialdean jartzeko
 		            title.setFont(null);
 		            document.add(title);
+		            double sumatotal = 0;
 		            
 		            while (resultSet.next()) {
 		                String nan = resultSet.getString("nan");
@@ -130,35 +131,28 @@ public class MYSQLToPDF extends JFrame {
 		                String modelo = resultSet.getString("modelo");
 		                String marka = resultSet.getString("marka");
 		                String kopurua = resultSet.getString("kopurua");
-	                   
-		                int num = Integer.parseInt(produktukoPrezioa);
-		                int suma = 0;
-		                suma = num + suma;
+		                
+		                double num = Double.parseDouble(produktukoPrezioa);
+		                double kop = Double.parseDouble(kopurua);
+	                    double suma = 0;
+	                    suma = (num*kop) + suma;
+	                    sumatotal =suma + sumatotal;
 		                
 		                document.add(new Paragraph("NAN: " + nan));
 		                document.add(new Paragraph("Izena: " + izena));
 		                document.add(new Paragraph("Abizena: " + abizena1));
-		                document.add(new Paragraph("Produktuaren prezioa: " + produktukoPrezioa));
+		                document.add(new Paragraph("Produktuaren prezioa: " + produktukoPrezioa+"€"));
 		                document.add(new Paragraph("Produktua: " + konponenteMota));
 		                document.add(new Paragraph("Modeloa: " + modelo));
 		                document.add(new Paragraph("Marka: " + marka));
 		                document.add(new Paragraph("Kopurua: " + kopurua));
-			             
-		                document.add(new Paragraph("\n"));
 		                
-		               
+		                document.add(new Paragraph("\n"));
 		            }
-		            while (resultSet.next()) {
 		            
-		            	  String produktukoPrezioa = resultSet.getString("produktukoPrezioa");
-		                  int num = Integer.parseInt(produktukoPrezioa);
-	                      int suma = 0;
-	                      suma = num + suma;
-	                      String strSuma= Integer.toString(suma);
+		            document.add(new Paragraph("Prezio totala: " + sumatotal+"€"));
 		            
-	                      document.add(new Paragraph("Prezio totala: " + strSuma));
-				       
-		            }
+		            document.add(new Paragraph("\n"));
 	                
 		            Paragraph subtitle = new Paragraph("Eskerrik asko erosteagatik/Gracias por la compra/Thank you for buying");
 	                subtitle.setAlignment(Element.ALIGN_LEFT);
