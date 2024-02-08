@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
 
 public class Panela extends JFrame {
 
@@ -37,15 +38,6 @@ public class Panela extends JFrame {
 		btnBezeroa.setBounds(0, 0, 256, 191);
 		contentPane.add(btnBezeroa);
 		
-		new JButton("Hornitzailea").addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		        if(user.equals("Celia")||user.equals("Beñat")||user.equals("Raúl")) {
-					Hornitzaileak frame = new Hornitzaileak();
-					frame.setVisible(true);
-					}else System.out.println("Baimena ukatua");
-			}
-		});
-		
 		btnBiltegia = new JButton("Biltegia");
 		btnBiltegia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -57,8 +49,33 @@ public class Panela extends JFrame {
 			}
 			
 		});
-		btnBiltegia.setBounds(0, 191, 524, 214);
+		btnBiltegia.setBounds(0, 191, 256, 214);
 		contentPane.add(btnBiltegia);
+		
+		JButton btnHornitzailea = new JButton("Hornitzailea");
+		btnHornitzailea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			        if(user.equals("Celia")||user.equals("Beñat")||user.equals("Raúl")) {
+						Hornitzaileak frame = new Hornitzaileak();
+						frame.setVisible(true);
+						}else System.out.println("Baimena ukatua");
+				
+			}
+		});
+		btnHornitzailea.setBounds(258, 0, 256, 191);
+		contentPane.add(btnHornitzailea);
+		
+		JButton btnFaktura = new JButton("Faktura");
+		btnFaktura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 if(user.equals("Unai")||user.equals("Beñat")||user.equals("Asier")) {
+					    MYSQLToPDF frame = new MYSQLToPDF();
+						frame.setVisible(true);
+						}else System.out.println("Baimena ukatua");
+			}
+		});
+		btnFaktura.setBounds(258, 191, 256, 214);
+		contentPane.add(btnFaktura);
 		
 		
 	}

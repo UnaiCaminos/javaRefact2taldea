@@ -314,7 +314,7 @@ public class administratzailea extends JFrame {
 				    helbidea=txtHelbidea.getText();
 				    sexua=txtSexua.getText();
 				    admin=txtAdmin.getText();
-				    String query ="INSERT INTO erronka.langileak"
+				    String query ="INSERT INTO erronka2.langileak"
 						+ " Values('"+izena+"', '"+abz1+"', '"+abz2+"', '"+Nan+"', '"+BankuZenb+"', '"+funtzioa+"', '"+korreoa+"', '"+helbidea+"', '"+sexua+"', "+admin+")";
 				    Statement stmt;
 					stmt = conexion.createStatement();
@@ -339,7 +339,7 @@ public class administratzailea extends JFrame {
 				    String langilea, abizena;
 				    langilea=txtName.getText();
 				    abizena=textAbizena2.getText();
-				    String query ="DELETE FROM erronka.langileak WHERE izena= '"+langilea+"'&& abizena1= '"+abizena+"'";
+				    String query ="DELETE FROM erronka2.langileak WHERE izena= '"+langilea+"'&& abizena1= '"+abizena+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);

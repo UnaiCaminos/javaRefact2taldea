@@ -102,7 +102,7 @@ public class bezeroak extends JFrame {
 				    nan=txtNan.getText();
 				    bankuNum=txtBankuZenbakia.getText();
 				    helbidea=txtHelbidea.getText();
-				    String query ="INSERT INTO erronka.bezeroak"
+				    String query ="INSERT INTO erronka2.bezeroak"
 						+ " Values('"+izn+"', '"+abz1+"', '"+abz2+"', '"+nan+"', '"+bankuNum+"', '"+helbidea+"')";
 				    Statement stmt;
 					stmt = conexion.createStatement();
@@ -126,7 +126,7 @@ public class bezeroak extends JFrame {
 				    String izn, nan;
 				    izn=txtIzena1.getText();
 				    nan=txtNan1.getText();
-				    String query ="DELETE FROM erronka.bezeroak WHERE izena= '"+izn+"'&& nan='"+nan+"'";
+				    String query ="DELETE FROM erronka2.bezeroak WHERE izena= '"+izn+"'&& nan='"+nan+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);

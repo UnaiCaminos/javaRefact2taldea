@@ -155,7 +155,7 @@ public class Hornitzaileak extends JFrame {
 				    Id=txtId.getText();
 				    nan=txtNanNif.getText();
 				    testua=txtTestua.getText();
-				    String query ="INSERT INTO erronka.hornitzaileak"
+				    String query ="INSERT INTO erronka2.hornitzaileak"
 						+ " Values('"+Id+"', '"+tel+"', '"+izn+"', '"+korreoa+"', '"+helbidea+"', '"+nan+"', '"+testua+"')";
 				    Statement stmt;
 				
@@ -180,7 +180,7 @@ public class Hornitzaileak extends JFrame {
 				    String izena, Id2;
 				    izena=txtName.getText();
 				    Id2=txtId2.getText();
-				    String query ="DELETE FROM erronka.hornitzaileak WHERE EnpresarenIzena= '"+izena+"'&& id= '"+Id2+"'";
+				    String query ="DELETE FROM erronka2.hornitzaileak WHERE EnpresarenIzena= '"+izena+"'&& id= '"+Id2+"'";
 				    Statement st;
 					st = conexion.createStatement();
 					st.executeUpdate(query);
