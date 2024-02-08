@@ -24,6 +24,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,7 +39,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class MYSQLToPDF extends JFrame {
+public class faktura extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -53,7 +54,7 @@ public class MYSQLToPDF extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MYSQLToPDF frame = new MYSQLToPDF();
+					faktura frame = new faktura();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +63,7 @@ public class MYSQLToPDF extends JFrame {
 		});
 		    }
 	
-	public MYSQLToPDF() {
+	public faktura() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 951, 671);
 		contentPane = new JPanel();
@@ -116,10 +117,34 @@ public class MYSQLToPDF extends JFrame {
 		            
 
 		            // Titulua gehitu
-		            Paragraph title = new Paragraph("Faktura");
-		            title.setAlignment(Element.ALIGN_CENTER); // Titulua erdialdean jartzeko
-		            title.setFont(null);
+		            Paragraph title = new Paragraph("Black Market");
+		            title.setAlignment(Element.ALIGN_RIGHT); // Titulua eskubialdean jartzeko
 		            document.add(title);
+		            
+		            float x = 18;
+		            float y = 725;
+		            
+		            try {
+		              com.itextpdf.text.Image logo = com.itextpdf.text.Image.getInstance("..//javaRefact2taldea//logoa//logo.png"); //Logoa dagoen ruta
+		              logo.scaleToFit(200, 100); // Logoaren tamainua
+		              logo.setAbsolutePosition(x, y); // Logoaren posizioa 
+		              document.add(logo);
+		              document.add(new Paragraph("\n"));
+		              document.add(new Paragraph("\n"));
+		              document.add(new Paragraph("\n"));
+		              document.add(new Paragraph("\n"));
+		              document.add(new Paragraph("\n"));
+		              document.add(new Paragraph("\n"));
+		            } catch (IOException e1) {
+		                e1.printStackTrace();//
+		            } catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (java.io.IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		            
 		            double sumatotal = 0;
 		            
 		            while (resultSet.next()) {

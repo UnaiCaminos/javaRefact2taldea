@@ -69,7 +69,7 @@ public class Panela extends JFrame {
 		btnFaktura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if(user.equals("Unai")||user.equals("Beñat")||user.equals("Asier")) {
-					    MYSQLToPDF frame = new MYSQLToPDF();
+					    faktura frame = new faktura();
 						frame.setVisible(true);
 						}else System.out.println("Baimena ukatua");
 			}
