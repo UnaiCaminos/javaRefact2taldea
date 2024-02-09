@@ -85,7 +85,7 @@ public class faktura extends JFrame {
 		            connection = DriverManager.getConnection(url, usuario, contraseña);
                     String Id;
                     Id=txtId0.getText();
-		            String query = "SELECT nan, izena, abizena1, idEskaera, produktukoPrezioa, prezioTotala, konponenteMota, modelo, marka, kopurua"
+		            String query = "SELECT nan, izena, abizena1, abizena2, idEskaera, produktukoPrezioa, prezioTotala, konponenteMota, modelo, marka, kopurua"
 		            		+ " FROM saskia "
 		            		+ " JOIN bezeroak ON saskia.nan_bezeroa = bezeroak.nan "
 		            		+ " JOIN produktueskaera ON saskia.id_eskaera = produktueskaera.idEskaera "
@@ -115,11 +115,6 @@ public class faktura extends JFrame {
 		            document.open();
 		           //Logoa gehitu
 		            
-
-		            // Titulua gehitu
-		            Paragraph title = new Paragraph("Black Market");
-		            title.setAlignment(Element.ALIGN_RIGHT); // Titulua eskubialdean jartzeko
-		            document.add(title);
 		            
 		            float x = 18;
 		            float y = 725;
@@ -146,26 +141,38 @@ public class faktura extends JFrame {
 					}
 		            
 		            double sumatotal = 0;
-		            
+		            String nan = "";
+		            String izena= "";
+		            String abizena1= "";
+		            String abizena2= "";
+		            int n = 0;
+		           
 		            while (resultSet.next()) {
-		                String nan = resultSet.getString("nan");
-		                String izena = resultSet.getString("izena");
-		                String abizena1 = resultSet.getString("abizena1");
+		            	nan = resultSet.getString("nan");
+	                    izena = resultSet.getString("izena");
+	                    abizena1 = resultSet.getString("abizena1");
+	                    abizena2 = resultSet.getString("abizena2");
+		                
+	                    while(n==0) {
+	                    document.add(new Paragraph("Nan: " + nan));
+	                    document.add(new Paragraph("Izena: " + izena));
+	                    document.add(new Paragraph("Lehen abizena: " + abizena1));
+	                    document.add(new Paragraph("Bigarren abizena: " + abizena2));
+	                    document.add(new Paragraph("\n"));
+	                    n = n+1;
+	                    }
+	                    
 		                String produktukoPrezioa = resultSet.getString("produktukoPrezioa");
 		                String konponenteMota = resultSet.getString("konponenteMota");
 		                String modelo = resultSet.getString("modelo");
 		                String marka = resultSet.getString("marka");
 		                String kopurua = resultSet.getString("kopurua");
-		                
 		                double num = Double.parseDouble(produktukoPrezioa);
 		                double kop = Double.parseDouble(kopurua);
 	                    double suma = 0;
 	                    suma = (num*kop) + suma;
 	                    sumatotal =suma + sumatotal;
 		                
-		                document.add(new Paragraph("NAN: " + nan));
-		                document.add(new Paragraph("Izena: " + izena));
-		                document.add(new Paragraph("Abizena: " + abizena1));
 		                document.add(new Paragraph("Produktuaren prezioa: " + produktukoPrezioa+"€"));
 		                document.add(new Paragraph("Produktua: " + konponenteMota));
 		                document.add(new Paragraph("Modeloa: " + modelo));
@@ -175,6 +182,7 @@ public class faktura extends JFrame {
 		                document.add(new Paragraph("\n"));
 		            }
 		            
+		           
 		            document.add(new Paragraph("Prezio totala: " + sumatotal+"€"));
 		            
 		            document.add(new Paragraph("\n"));
